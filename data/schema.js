@@ -1,5 +1,5 @@
 import {resolvers} from './resolvers'
-import {makeExecutablesSchema} from 'graphql-tools'
+import {makeExecutableSchema} from 'graphql-tools'
 const typeDefs = `
 type Friend {
   id: ID
@@ -10,6 +10,13 @@ type Friend {
   language: String
   email: String
   contacts: [Contact]
+}
+
+type Alien {
+  id: ID,
+  firstName: String
+  lastName: String
+  planet: String
 }
 
 type Contact {
@@ -52,6 +59,6 @@ type Mutation {
 }
 `
 
-const schema = makeExecutablesSchema({typeDefs, resolvers})
+const schema = makeExecutableSchema({typeDefs, resolvers})
 
 export { schema }
