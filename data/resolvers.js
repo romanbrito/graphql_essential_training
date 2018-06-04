@@ -1,11 +1,14 @@
 import mongoose from 'mongoose'
-import {Friends} from './dbConnectors'
+import {Friends, Aliens} from './dbConnectors'
 
 // resolver map
 export const resolvers = {
   Query: {
     getFriend: ({id}) => {
       return new Friend(id, friendDatabase[id])
+    },
+    getAliens: () => {
+      return Aliens.findAll()
     }
   },
   Mutation: {
