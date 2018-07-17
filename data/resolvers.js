@@ -36,7 +36,6 @@ export const resolvers = {
         name: input.name
       })
 
-      newUser.id = newUser._id
 
       return new Promise((resolve, object) => {
        newUser.save((err) => {
@@ -45,6 +44,29 @@ export const resolvers = {
        })
       })
     },
+    updateUser: (root, {input}) => {
+
+      const SALT_ROUNDS = 10
+      const salt = bcrypt.genSaltSync(SALT_ROUNDS)
+      const hash = bcrypt.hashSync(input.password, salt)
+
+      return new Promise((resolve, object) => {
+        Users.findOneAndUpdate({_id: input.id}, {email: input.email, password: hash, name: input.name}, {new: true}, (err, user) => {
+          if(err) reject(err)
+          else resolve(user)
+        })
+      })
+    },
+    authenticateUser: (root, {input}) => {
+      console.log(input)
+      // bcrypt.compareSync(input.password, )
+      return new Promise((resolve, object) => {
+        Users.findOne({email: input.email}, (err, user) => {
+          if (err) reject(err)
+          else resolve(user)
+        })
+      })
+    }
 
     // createFriend: (root, {input}) => {
     //   const newFriend = new Friends({

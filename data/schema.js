@@ -64,16 +64,29 @@ input ContactInput {
 }
 
 input UserInput {
+  id: String
   email: String
   password: String
   name: String
 }
+
+input AuthenticateInput {
+  email: String!
+  password: String
+  }
+  
+  type AuthenticateUserPayload {
+    id: ID!
+    name: String
+  }
 
 type Mutation {
   createFriend(input: FriendInput): Friend
   updateFriend(input: FriendInput): Friend
   deleteFriend(id: ID!): String
   createUser(input: UserInput): User
+  updateUser(input: UserInput): User
+  authenticateUser(input: AuthenticateInput!): AuthenticateUserPayload 
 }
 `
 
