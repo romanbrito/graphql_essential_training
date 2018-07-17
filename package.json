@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/romanbrito/graphql_essential_training#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "casual": "^1.5.19",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",

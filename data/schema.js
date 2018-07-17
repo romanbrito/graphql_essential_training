@@ -1,6 +1,13 @@
 import {resolvers} from './resolvers'
 import {makeExecutableSchema} from 'graphql-tools'
 const typeDefs = `
+type User {
+  id: ID
+  email: String
+  password: String
+  name: String
+}
+
 type Friend {
   id: ID
   firstName: String
@@ -36,6 +43,7 @@ type Email {
 
 type Query {
   getOneFriend(id: ID): Friend
+  getOneUser(id: ID): User
   getAliens: [Alien]
 }
 
@@ -55,10 +63,17 @@ input ContactInput {
   lastName: String
 }
 
+input UserInput {
+  email: String
+  password: String
+  name: String
+}
+
 type Mutation {
   createFriend(input: FriendInput): Friend
   updateFriend(input: FriendInput): Friend
   deleteFriend(id: ID!): String
+  createUser(input: UserInput): User
 }
 `
 

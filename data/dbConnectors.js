@@ -5,37 +5,52 @@ import casual from 'casual'
 
 // Mongo connection
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/friends',
+mongoose.connect('mongodb://localhost/users',
 //   {
 //   useMongoClient: true
 // }
 )
 
-const friendsSchema = new mongoose.Schema({
-  firstName: {
-    type: String
-  },
-  lastName: {
-    type: String
-  },
-  gender: {
-    type: String
-  },
-  age: {
-    type: Number
-  },
-  language: {
-    type: String
-  },
+// const friendsSchema = new mongoose.Schema({
+//   firstName: {
+//     type: String
+//   },
+//   lastName: {
+//     type: String
+//   },
+//   gender: {
+//     type: String
+//   },
+//   age: {
+//     type: Number
+//   },
+//   language: {
+//     type: String
+//   },
+//   email: {
+//     type: String
+//   },
+//   contacts: {
+//     type: Array
+//   }
+// })
+//
+// const Friends = mongoose.model('friends', friendsSchema)
+
+const usersSchema = new mongoose.Schema({
   email: {
     type: String
   },
-  contacts: {
-    type: Array
+  password: {
+    type: String
+  },
+  name: {
+    type: String
   }
 })
 
-const Friends = mongoose.model('friends', friendsSchema)
+const Users = mongoose.model('users', usersSchema)
+
 
 // SQL
 const sequelize = new Sequelize('database', null, null, {
@@ -59,4 +74,4 @@ Aliens.sync({force: true}).then(() => { // creating fake data
   })
 })
 
-export {Friends, Aliens}
+export {Aliens, Users}
